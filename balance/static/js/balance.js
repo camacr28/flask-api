@@ -1,12 +1,17 @@
-function cargarMovimientos() {
-    console.log('Has llamado a la función de cargar movimientos');
+const peticion = new XMLHttpRequest();
+
+function cargar_movimientos() {
+    console.log('Llamada a la función de cargar movimientos');
+    peticion.open('GET', 'http://localhost:5000/api/v1/movimientos', false);
+    peticion.send();
+    console.log(peticion.responseText);
 }
 
 
 window.onload = function () {
-    console.log('Ya se han cargado los elementos de la página');
-    // const boton = document.querySelector('#boton-recarga');
+    console.log('Elementos de la página cargados');
     const boton = document.getElementById('boton-recarga');
-    boton.addEventListener('click', cargarMovimientos);
-    console.log('FIN de la función window.onload');
+    boton.addEventListener('click', cargar_movimientos);
+    console.log('Fin de la función window.onload');
 }
+
