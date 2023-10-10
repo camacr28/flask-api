@@ -1,12 +1,12 @@
-from flask import jsonify
+from flask import render_template
 
-from . import app, RUTA
-from .models import DBManager
+from . import app
+
+
+# Vistas para templates
 
 
 @app.route('/')
-def inicio():
-    db = DBManager(RUTA)
-    sql = 'SELECT fecha, concepto, tipo, cantidad FROM movimientos'
-    movs = db.consultaSQL(sql)
-    return jsonify(movs)
+def home():
+    return render_template('inicio.html')
+

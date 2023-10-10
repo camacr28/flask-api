@@ -1,17 +1,18 @@
 # flask-api
-App balance con API REST
 
-# Verbos y formato de los endpoint en una API REST
+De nuevo la aplicación balance, pero con API REST
 
-- GET /movimientos ------------> Listar movimientos
-- POST /movimientos -----------> Crear movimiento
+## Verbos y formato de los endpoint en una API REST
 
-- GET /movimientos/1 ----------> Leer movimiento con id=1
-- POST /movimientos/1 ---------> Actualiza el movimiento con id=1 (sobreescribe todos los datos preexistentes)
-- PUT /movimientos/1 ----------> Actualiza el movimiento con id=1 (solo sobreescribe los datos nuevos, es decir, sobreescritura parcial)
-- DELETE /movimientos/1 -------> Elimina el movimiento con id=1
+- GET /movimientos -----------> LISTAR movimientos
+- POST /movimientos ----------> CREAR un movimiento nuevo
 
+- GET /movimientos/1 ---------> LEER el movimiento con ID = 1
+- POST /movimientos/1 --------> ACTUALIZAR el movimiento con ID = 1 (sobreescribe TODO el objeto)
+- PUT /movimientos/1 ---------> ACTUALIZAR el movimiento con ID = 1 (sobreescribe PARCIALMENTE)
+- DELETE /movimientos/1 ------> ELIMINAR el movimiento con ID = 1
 
-¡¡¡IMPORTANTE!!!
-Versionar los endpoints (Una API es un contrato)
-'/api/version/...'
+**¡¡IMPORTANTE!!**
+
+Es muy importante versionar los endpoints (una API es un contrato)
+`/api/v1/...`
