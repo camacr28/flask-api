@@ -14,12 +14,14 @@ def listar_movimientos():
             'status': 'success',
             'results': movs
         }
+        status_code = 200
     except Exception as ex:
         resultado = {
             'status': 'error',
             'message': str(ex)
         }
-    return jsonify(resultado)
+        status_code = 500
+    return jsonify(resultado), status_code
 
 
 @app.route('/api/v1/movimientos/<int:id>')
@@ -36,7 +38,7 @@ def leer_movimiento(id):
         else:
             resultado = {
                 'status': 'error',
-                'message': f'No se ha encontrado el movimiento con ID = {id}'
+                'message': f'No he encontrado el movimiento con ID = {id}'
             }
             status_code = 404
     except Exception as error:
@@ -45,4 +47,36 @@ def leer_movimiento(id):
             'message': str(error)
         }
         status_code = 500
+
     return jsonify(resultado), status_code
+
+
+@app.route('/api/v1/movimientos/<int:id>', methods=['DELETE'])
+def eliminar_movimiento(id):
+    try:
+        db = DBManager(app.config['RUTA'])
+        mov = db.obtenerMovimiento(id)
+
+        if mov:
+            esta_borrado = db.borrar(id)
+            if esta_borrado:
+                resultado = {
+                    'status': 'success',
+                    'results': mov
+                }
+                status_code = 200
+        else:
+            resultado = {
+                'status': 'error',
+                'message': f'El movimiento con ID = {id} no existe, no lo puedo borrar'
+            }
+            status_code = 404
+
+    except Exception:
+        resultado = {
+            'status': 'error',
+            'message': 'Algo ha ido mal...'
+        }
+        status_code = 500
+
+    return resultado, status_code
