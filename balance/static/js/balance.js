@@ -2,10 +2,10 @@ const peticion = new XMLHttpRequest();
 
 
 function cargarMovimientos() {
-    console.log('Has llamado a la función de cargar movimientos');
+    console.log('Llamada a la función de cargar movimientos');
     peticion.open('GET', 'http://localhost:5000/api/v1/movimientos', true);
     peticion.send();
-    console.log('FIN carga movimientos');
+    console.log('Fin carga movimientos');
 }
 
 
@@ -17,11 +17,6 @@ function mostrarMovimientos() {
 
 
     let html = '';
-    /*
-    En Python:
-    for i in range(len(movimientos)):
-        i = i + 1
-    */
     for (let i = 0; i < movimientos.length; i = i + 1) {
         const mov = movimientos[i];
         html = html + `
@@ -36,12 +31,12 @@ function mostrarMovimientos() {
     const tabla = document.querySelector('#cuerpo-tabla');
     tabla.innerHTML = html;
 
-    console.log('FIN de la función mostrar movimientos');
+    console.log('Fin de la función mostrar movimientos');
 }
 
 
 window.onload = function () {
-    console.log('Ya se han cargado los elementos de la págin (window.onload)');
+    console.log('Elementos de la página cargados');
 
     // const boton = document.querySelector('#boton-recarga');
     const boton = document.getElementById('boton-recarga');
@@ -51,5 +46,5 @@ window.onload = function () {
 
     peticion.onload = mostrarMovimientos;
 
-    console.log('FIN de la función window.onload');
+    console.log('Fin de la función window.onload');
 }
